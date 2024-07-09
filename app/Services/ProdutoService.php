@@ -35,11 +35,7 @@ class ProdutoService
     }
 
     public function update(Request $request, Produto $produto){
-        $data = $request->all();
-        $fornecedor = Fornecedor::where('name', $request->fornecedor)->first();
-        $data['fornecedor'] = $fornecedor->id;
-
-        $produto->update($data);
+        $produto->update($request->all());
     }
 
     public function destroy(Produto $produto){

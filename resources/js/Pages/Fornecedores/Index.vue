@@ -28,7 +28,7 @@
                             class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
 
                             <!-- FORMULÁRIO CRIAÇÃO FORNECEDOR -->
-                            <button type="button" @click="openAddModel"
+                            <button type="button" @click="openAddModal"
                                 class="flex items-center justify-center text-white bg-primary-500 hover:bg-primary-600 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                                 <svg class="w-[20px] h-[20px] text-white-800 dark:text-white mr-2" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -65,7 +65,7 @@
                                         <!-- Modal body -->
 
                                 <el-dialog class="dark relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5"
-                                            v-model="form.openModel"
+                                            v-model="form.openModal"
                                             :title="form.editMode ? 'Editar Fornecedor' : 'Adicionar Fornecedor'"
                                             width="40%"
                                 >
@@ -346,8 +346,8 @@
                                                         class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
                                                 </li>
                                                 <li>
-                                                    <button @click="openEditModal(fornecedor)" type="button"
-                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</button>
+                                                    <a @click="openEditModal(fornecedor)"
+                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
                                                 </li>
                                             </ul>
                                             <div class="py-1">
@@ -429,8 +429,8 @@ defineProps({
     fornecedores: Array
 })
 
-const openAddModel = () => {
-    form.openModel = true;
+const openAddModal = () => {
+    form.openModal = true;
     form.addMode = true;
     form.editMode = false;
 }
@@ -443,7 +443,7 @@ const openEditModal = (fornecedor) => {
     form.dataFornecedor = fornecedor.dataFornecedor;
     form.telefone = fornecedor.telefone;
 
-    form.openModel = true;
+    form.openModal = true;
     form.addMode = false;
     form.editMode = true;
 }
@@ -455,7 +455,7 @@ const form = useForm({
     cnpj: null,
     dataFornecedor: null,
     telefone: null,
-    openModel: false,
+    openModal: false,
     addMode: false,
     editMode: false,
 })
@@ -466,7 +466,7 @@ function create() {
     form.post('/fornecedores', {
         onFinish: () => {
             form.reset;
-            form.openModel = false;
+            form.openModal = false;
         }
     });
 }
@@ -475,7 +475,7 @@ function update() {
     form.put('/fornecedores/' + form.id, {
         onFinish: () => {
             form.reset;
-            form.openModel = false;
+            form.openModal = false;
         }
     });
 }
