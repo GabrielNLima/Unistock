@@ -262,7 +262,7 @@
                                                 </li>
                                             </ul>
                                             <div class="py-1">
-                                                <a href="#"
+                                                <a @click="deleteProduto(produto)"
                                                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
                                             </div>
                                         </div>
@@ -334,7 +334,7 @@
 </template>
 
 <script setup>
-import { Link, useForm, usePage } from '@inertiajs/vue3';
+import { useForm } from '@inertiajs/vue3';
 import Layout from '../../Shared/Layout.vue';
 
 defineProps({
@@ -392,6 +392,10 @@ function update() {
             form.openModal = false;
         }
     });
+}
+
+function deleteProduto(produto) {
+    form.delete('produtos/' + produto.id);
 }
 
 </script>
