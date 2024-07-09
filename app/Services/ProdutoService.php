@@ -18,7 +18,7 @@ class ProdutoService
     }
 
     public function getAll() {
-        return Produto::get();
+        return Produto::orderBy('id')->get();
     }
 
     public function store(StoreUpdateProdutoFormRequest $request){

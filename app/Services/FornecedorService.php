@@ -17,7 +17,7 @@ class FornecedorService
     }
 
     public function getAll() {
-        return Fornecedor::get();
+        return Fornecedor::orderBy('id')->get();
     }
 
     public function store(StoreUpdateFornecedorFormRequest $request){
