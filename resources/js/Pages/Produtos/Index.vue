@@ -42,7 +42,7 @@
                             </button>
                             <el-dialog class="dark relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5"
                                         v-model="form.openModal"
-                                        :title="form.editMode ? 'Editar Produto' : 'Adicionar Produto'"
+                                        :title="form.titulo"
                                         width="40%"
                             >
                                 <form @submit.prevent="form.editMode ? update() : create()">
@@ -50,49 +50,49 @@
                                         <div>
                                             <label for="name"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
-                                            <input v-model="form.name" type="text" name="name" id="name"
+                                            <input v-model="form.name" type="text" name="name" id="name" :disabled="form.showMode"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                 placeholder="Nome do Produto">
                                         </div>
                                         <div>
                                             <label for="codigo"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Código</label>
-                                            <input v-model="form.codigo" type="integer" name="codigo" id="codigo"
+                                            <input v-model="form.codigo" type="integer" name="codigo" id="codigo" :disabled="form.showMode"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                 placeholder="Código do Produto">
                                         </div>
                                         <div>
                                             <label for="categoria"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoria</label>
-                                            <input v-model="form.categoria" type="text" name="categoria" id="categoria"
+                                            <input v-model="form.categoria" type="text" name="categoria" id="categoria" :disabled="form.showMode"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                 placeholder="Categoria do Produto">
                                         </div>
                                         <div>
                                             <label for="dataProduto"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data</label>
-                                            <input v-model="form.dataProduto" type="date" name="dataProduto" id="dataProduto"
+                                            <input v-model="form.dataProduto" type="date" name="dataProduto" id="dataProduto" :disabled="form.showMode"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                             >
                                         </div>
                                         <div>
                                             <label for="quantidade"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantidade</label>
-                                            <input v-model="form.quantidade" type="integer" name="quantidade" id="quantidade"
+                                            <input v-model="form.quantidade" type="integer" name="quantidade" id="quantidade" :disabled="form.showMode"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                 placeholder="Quantidade do Produto">
                                         </div>
                                         <div>
                                             <label for="precoUnitario"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Preço Unitário</label>
-                                            <input v-model="form.precoUnitario" type="float" name="precoUnitario" id="precoUnitario"
+                                            <input v-model="form.precoUnitario" type="float" name="precoUnitario" id="precoUnitario" :disabled="form.showMode"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                 placeholder="R$ 10.00">
                                         </div>
                                         <div>
                                             <label for="fornecedor"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fornecedor</label>
-                                                <select v-model="form.id_fornecedor" id="fornecedor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                <select v-model="form.id_fornecedor" id="fornecedor" :disabled="form.showMode" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                                     <option v-for="fornecedor in fornecedores" :key="fornecedor.id" :value="fornecedor.id">{{ fornecedor.name }}</option>
                                                 </select>
                                         </div>
@@ -108,7 +108,7 @@
                                             </svg>
                                             Adicionar Produto
                                         </button>
-                                        <button type="submit" v-if="form.editMode"
+                                        <button type="submit" v-if="form.editMode" :disabled="form.showMode"
                                             class="text-white inline-flex  items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                             <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -230,9 +230,8 @@
                             </thead>
                             <tbody>
                                 <tr v-for="produto in produtos" :key="produto.id" class="border-b dark:border-gray-700">
-                                    <th scope="row"
-                                        class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ produto.name }}</th>
+                                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        <a @click="openShowModal(produto)" class="cursor-pointer">{{ produto.name }}</a></th>
                                     <td class="px-4 py-3">{{ produto.codigo }}</td>
                                     <td class="px-4 py-3">{{ produto.categoria }}</td>
                                     <td class="px-4 py-3">{{ produto.quantidade }}</td>
@@ -253,17 +252,17 @@
                                             <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                                 :aria-labelledby="`${produto.id}`">
                                                 <li>
-                                                    <a href="#"
-                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
+                                                    <a @click="openShowModal(produto)"
+                                                        class="cursor-pointer block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
                                                 </li>
                                                 <li>
                                                     <a @click="openEditModal(produto)"
-                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                                        class="cursor-pointer block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
                                                 </li>
                                             </ul>
                                             <div class="py-1">
                                                 <a @click="deleteProduto(produto)"
-                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                                                    class="cursor-pointer block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
                                             </div>
                                         </div>
                                     </td>
@@ -343,12 +342,15 @@ defineProps({
 })
 
 const openAddModal = () => {
-    form.openModal = true;
+    form.titulo = "Adicionar Produto";
     form.addMode = true;
     form.editMode = false;
+    form.showMode = false;
+    form.openModal = true;
 }
 
 const openEditModal = (produto) => {
+    form.titulo = 'Editar ' + produto.name;
     form.id = produto.id;
     form.name = produto.name;
     form.codigo = produto.codigo;
@@ -358,9 +360,27 @@ const openEditModal = (produto) => {
     form.precoUnitario = produto.precoUnitario;
     form.id_fornecedor = produto.id_fornecedor;
 
-    form.openModal = true;
     form.addMode = false;
     form.editMode = true;
+    form.showMode = false;
+    form.openModal = true;
+}
+
+const openShowModal = (produto) => {
+    form.titulo = 'Visualizar ' + produto.name;
+    form.id = produto.id;
+    form.name = produto.name;
+    form.codigo = produto.codigo;
+    form.categoria = produto.categoria;
+    form.dataProduto = produto.dataProduto;
+    form.quantidade = produto.quantidade;
+    form.precoUnitario = produto.precoUnitario;
+    form.id_fornecedor = produto.id_fornecedor;
+
+    form.addMode = false;
+    form.editMode = false;
+    form.showMode = true;
+    form.openModal = true;
 }
 
 const form = useForm({
@@ -372,9 +392,11 @@ const form = useForm({
     quantidade: null,
     precoUnitario: null,
     id_fornecedor: null,
+    titulo: '',
     openModal: false,
     addMode: false,
     editMode: false,
+    showMode: false,
 })
 
 function create() {

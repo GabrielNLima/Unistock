@@ -5,16 +5,11 @@ namespace App\Services;
 use App\Http\Requests\StoreUpdateFornecedorFormRequest;
 use App\Models\Fornecedor;
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class FornecedorService
 {
-
-    protected $fornecedor;
-
-    public function __construct(Fornecedor $fornecedor) {
-        $this->fornecedor = $fornecedor;
-    }
 
     public function getAll() {
         return Fornecedor::orderBy('id')->get();
@@ -37,4 +32,7 @@ class FornecedorService
         $fornecedor->delete();
     }
 
+    public function filter(Builder $query){
+        
+    }
 }
