@@ -2,7 +2,7 @@
     <Navbar/>
             <div class="flex flex-col items-center justify-top px-6 py-8 mx-auto md:h-screen lg:py-0 m-32">
                 <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-                    <img class="w-14 h-14" :src="'../storage/images/Logo_PNG.png'">
+                    <img class="w-14 h-14" :src="'/images/Logo_PNG.png'">
                     Unistock
                 </a>
                 <div
