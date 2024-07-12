@@ -403,6 +403,7 @@ function create() {
     form.post('/produtos', {
         onFinish: () => {
             form.reset;
+            form.openModal = false;
         }
     });
 }
