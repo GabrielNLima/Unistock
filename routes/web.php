@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EntradasController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\UserController;
@@ -35,4 +36,8 @@ Route::controller(ProdutoController::class)->group(function(){
     Route::put('/produtos/{id}', 'update')-> name('produto.update');
     Route::delete('/produtos/{id}', 'destroy')-> name('produto.destroy');
 
+});
+
+Route::controller(EntradasController::class)->group(function(){
+    Route::get('/entradas', 'index')-> name('entradas.index');
 });
