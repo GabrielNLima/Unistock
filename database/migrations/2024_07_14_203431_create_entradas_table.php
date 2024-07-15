@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('entradas', function (Blueprint $table) {
             $table->id();                               // Da entrada
             $table->integer('codigo');                  // Da entrada
-            $table->string('nomeProduto');
             $table->integer('quantidadeProduto');
-            $table->float('custoUnitario');
             $table->float('custoTotal');
             $table->date('dataEntrada');
             $table->integer('id_produto');

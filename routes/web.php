@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\EntradasController;
-use App\Http\Controllers\FornecedorController;
-use App\Http\Controllers\ProdutoController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\{
+    EntradaController,
+    FornecedorController,
+    ProdutoController,
+    UserController,
+};
 use Illuminate\Support\Facades\Route;
 
 
@@ -38,6 +40,8 @@ Route::controller(ProdutoController::class)->group(function(){
 
 });
 
-Route::controller(EntradasController::class)->group(function(){
-    Route::get('/entradas', 'index')-> name('entradas.index');
+Route::controller(EntradaController::class)->group(function(){
+    Route::get('/entradas', 'index')-> name('entrada.index');
+    Route::post('/entradas', 'store')-> name('entrada.store');
+
 });
