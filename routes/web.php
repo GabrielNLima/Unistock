@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\{
     EntradaController,
+    SaidaController,
     FornecedorController,
     ProdutoController,
     UserController,
@@ -43,5 +44,9 @@ Route::controller(ProdutoController::class)->group(function(){
 Route::controller(EntradaController::class)->group(function(){
     Route::get('/entradas', 'index')-> name('entrada.index');
     Route::post('/entradas', 'store')-> name('entrada.store');
+});
 
+Route::controller(SaidaController::class)->group(function(){
+    Route::get('/saidas', 'index')-> name('saida.index');
+    Route::post('/saidas', 'store')-> name('saida.store');
 });

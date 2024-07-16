@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Saidas extends Model
+class Saida extends Model
 {
     use HasFactory;
 
-    protected $filable = [
+    protected $fillable = [
         'codigo',
-        'nomeProduto',
         'quantidadeProduto',
-        'custoUnitario',
         'valorTotal',
         'dataSaida',
-        'idProduto',
+        'id_produto',
     ];
 }

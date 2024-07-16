@@ -2,9 +2,7 @@
 
 namespace App\Services;
 
-use App\Http\Requests\StoreUpdateFornecedorFormRequest;
 use App\Models\Entrada;
-use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 

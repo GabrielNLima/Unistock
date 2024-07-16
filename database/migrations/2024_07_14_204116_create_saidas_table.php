@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('saidas', function (Blueprint $table) {
             $table->id();
             $table->integer('codigo');
-            $table->string('nomeProduto');
             $table->integer('quantidadeProduto');
-            $table->float('custoUnitario');
             $table->float('valorTotal');
             $table->date('dataSaida');
             $table->integer('id_produto');
