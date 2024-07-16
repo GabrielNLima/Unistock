@@ -328,6 +328,7 @@ defineProps({
 })
 
 const openAddModal = () => {
+    form.reset();
     form.titulo = "Adicionar Fornecedor";
     form.addMode = true;
     form.editMode = false;
@@ -336,6 +337,7 @@ const openAddModal = () => {
 }
 
 const openEditModal = (fornecedor) => {
+    form.reset();
     form.titulo = 'Editar ' + fornecedor.name;
     form.id = fornecedor.id;
     form.name = fornecedor.name;
@@ -351,6 +353,7 @@ const openEditModal = (fornecedor) => {
 }
 
 const openShowModal = (fornecedor) => {
+    form.reset();
     form.titulo = 'Visualizar ' + fornecedor.name;
     form.id = fornecedor.id;
     form.name = fornecedor.name;
@@ -383,7 +386,7 @@ const form = useForm({
 function create() {
     form.post('/fornecedores', {
         onFinish: () => {
-            form.reset;
+            form.reset();
             form.openModal = false;
         }
     });
@@ -392,7 +395,7 @@ function create() {
 function update() {
     form.put('/fornecedores/' + form.id, {
         onFinish: () => {
-            form.reset;
+            form.reset();
             form.openModal = false;
         }
     });

@@ -328,6 +328,7 @@ defineProps({
 })
 
 const openAddModal = () => {
+    form.reset();
     form.titulo = "Adicionar Entrada";
     form.addMode = true;
     form.editMode = false;
@@ -336,6 +337,7 @@ const openAddModal = () => {
 }
 
 const openEditModal = (entrada) => {
+    form.reset();
     form.titulo = 'Editar Entrada ' + entrada.nomeProduto;
     form.id = entrada.id;
     form.codigo = entrada.codigo;
@@ -351,8 +353,9 @@ const openEditModal = (entrada) => {
     form.openModal = true;
 }
 
-const openShowModal = (fornecedor) => {
-    form.titulo = 'Editar Entrada ' + entrada.nomeProduto;
+const openShowModal = (entrada) => {
+    form.reset();
+    form.titulo = 'Visualizar Entrada ' + entrada.nomeProduto;
     form.id = entrada.id;
     form.codigo = entrada.codigo;
     form.nomeProduto = entrada.nomeProduto;
@@ -385,7 +388,7 @@ const form = useForm({
 function create() {
     form.post('/entradas', {
         onFinish: () => {
-            form.reset;
+            form.reset();
             form.openModal = false;
         }
     });
@@ -394,7 +397,7 @@ function create() {
 function update() {
     form.put('/fornecedores/' + form.id, {
         onFinish: () => {
-            form.reset;
+            form.reset();
             form.openModal = false;
         }
     });
