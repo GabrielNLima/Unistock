@@ -28,4 +28,22 @@ class EntradaController extends Controller
 
         return redirect()->route('entrada.index');
     }
+
+    public function update(Request $request, $id){
+        if (!($entrada = $this->entradaService->getById($id)))
+            return redirect()-> route('entrada.index');
+
+        $this->entradaService->update($request, $entrada);
+
+        return redirect()->route('entrada.index');
+    }
+
+    public function destroy($id){
+        if (!($entrada = $this->entradaService->getById($id)))
+            return redirect()-> route('entrada.index');
+
+        $this->entradaService->destroy($entrada);
+
+        return redirect()->route('entrada.index');
+    }
 }

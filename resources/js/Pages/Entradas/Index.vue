@@ -248,7 +248,7 @@
                                                 </li>
                                             </ul>
                                             <div class="py-1">
-                                                <a
+                                                <a @click="deleteEntrada(entrada)"
                                                     class="cursor-pointer block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
                                             </div>
                                         </div>
@@ -328,7 +328,7 @@ defineProps({
 })
 
 const openAddModal = () => {
-    form.reset('codigo', 'id_produto', 'quantidadeProduto', 'custoTotal', 'dataEntrada', 'titulo');
+    form.reset();
     form.titulo = "Adicionar Entrada";
     form.addMode = true;
     form.editMode = false;
@@ -394,7 +394,7 @@ function create() {
 }
 
 function update() {
-    form.put('/fornecedores/' + form.id, {
+    form.put('/entradas/' + form.id, {
         onFinish: () => {
             form.reset();
             form.openModal = false;
@@ -402,8 +402,8 @@ function update() {
     });
 }
 
-function deleteFornecedor(fornecedor) {
-    form.delete('fornecedores/' + fornecedor.id);
+function deleteEntrada(entrada) {
+    form.delete('entradas/' + entrada.id);
 }
 
 </script>
