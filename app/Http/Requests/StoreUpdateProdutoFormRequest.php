@@ -27,7 +27,7 @@ class StoreUpdateProdutoFormRequest extends FormRequest
             'categoria' => 'required|string|max:25|min:3',
             'dataProduto' => 'required|date|before or equal:today|',
             'quantidade' => 'required|integer|min:0',
-            'precoUnitario' => 'required|decimal:1,2|min:0.00',
+            'precoUnitario' => 'required|decimal:0,2|min:0.00',
             'id_fornecedor' => 'required|integer|min:0',
         ];
     }
