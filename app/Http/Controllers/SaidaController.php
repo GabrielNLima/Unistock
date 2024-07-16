@@ -27,4 +27,22 @@ class SaidaController extends Controller
 
         return redirect()->route('saida.index');
     }
+
+    public function update(Request $request, $id){
+        if (!($saida = $this->saidaService->getById($id)))
+            return redirect()-> route('saida.index');
+
+        $this->saidaService->update($request, $saida);
+
+        return redirect()->route('saida.index');
+    }
+
+    public function destroy($id){
+        if (!($saida = $this->saidaService->getById($id)))
+            return redirect()-> route('saida.index');
+
+        $this->saidaService->destroy($saida);
+
+        return redirect()->route('saida.index');
+    }
 }

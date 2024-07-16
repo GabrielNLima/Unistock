@@ -219,7 +219,7 @@
                                 <tr v-for="entrada in entradas" :key="entrada.id"
                                     class="border-b dark:border-gray-700">
                                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <a @click="openShowModal(entrada)" class="cursor-pointer">{{ entrada.nomeProduto }}</a></th>
+                                        <a @click="openShowModal(entrada, produtos[(entrada.id_produto)-1].name)" class="cursor-pointer">{{ produtos[(entrada.id_produto)-1].name }}</a></th>
                                     <td class="px-4 py-3">{{ entrada.codigo }}</td>
                                     <td class="px-4 py-3">{{ entrada.quantidadeProduto }}</td>
                                     <td class="px-4 py-3">{{ entrada.custoTotal }}</td>
@@ -239,11 +239,11 @@
                                             <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                                 :aria-labelledby="`${entrada.id}-button`">
                                                 <li>
-                                                    <a @click="openShowModal(entrada)"
+                                                    <a @click="openShowModal(entrada, produtos[(entrada.id_produto)-1].name)"
                                                         class="cursor-pointer block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
                                                 </li>
                                                 <li>
-                                                    <a @click="openEditModal(entrada)"
+                                                    <a @click="openEditModal(entrada, produtos[(entrada.id_produto)-1].name)"
                                                         class="cursor-pointer block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
                                                 </li>
                                             </ul>
@@ -328,7 +328,7 @@ defineProps({
 })
 
 const openAddModal = () => {
-    form.reset();
+    form.reset('codigo', 'id_produto', 'quantidadeProduto', 'custoTotal', 'dataEntrada', 'titulo');
     form.titulo = "Adicionar Entrada";
     form.addMode = true;
     form.editMode = false;
@@ -336,12 +336,11 @@ const openAddModal = () => {
     form.openModal = true;
 }
 
-const openEditModal = (entrada) => {
+const openEditModal = (entrada, nomeProduto) => {
     form.reset();
-    form.titulo = 'Editar Entrada ' + entrada.nomeProduto;
+    form.titulo = 'Editar Entrada ' + nomeProduto;
     form.id = entrada.id;
     form.codigo = entrada.codigo;
-    form.nomeProduto = entrada.nomeProduto;
     form.quantidadeProduto = entrada.quantidadeProduto;
     form.custoTotal = entrada.custoTotal;
     form.dataEntrada = entrada.dataEntrada;
@@ -353,12 +352,11 @@ const openEditModal = (entrada) => {
     form.openModal = true;
 }
 
-const openShowModal = (entrada) => {
+const openShowModal = (entrada, nomeProduto) => {
     form.reset();
-    form.titulo = 'Visualizar Entrada ' + entrada.nomeProduto;
+    form.titulo = 'Visualizar Entrada ' + nomeProduto;
     form.id = entrada.id;
     form.codigo = entrada.codigo;
-    form.nomeProduto = entrada.nomeProduto;
     form.quantidadeProduto = entrada.quantidadeProduto;
     form.custoTotal = entrada.custoTotal;
     form.dataEntrada = entrada.dataEntrada;
@@ -388,6 +386,7 @@ const form = useForm({
 function create() {
     form.post('/entradas', {
         onFinish: () => {
+            console.log("reset form");
             form.reset();
             form.openModal = false;
         }

@@ -243,12 +243,12 @@
                                                         class="cursor-pointer block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
                                                 </li>
                                                 <li>
-                                                    <a @click="openEditModal(saida)"
+                                                    <a @click="openEditModal(saida, produtos[(saida.id_produto)-1].name)"
                                                         class="cursor-pointer block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
                                                 </li>
                                             </ul>
                                             <div class="py-1">
-                                                <a
+                                                <a @click="deleteSaida(saida)"
                                                     class="cursor-pointer block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
                                             </div>
                                         </div>
@@ -336,15 +336,15 @@ const openAddModal = () => {
     form.openModal = true;
 }
 
-const openEditModal = (saida) => {
+const openEditModal = (saida, nomeProduto) => {
     form.reset();
+    form.titulo = 'Editar Saida ' + nomeProduto;
     form.id = saida.id;
     form.codigo = saida.codigo;
     form.quantidadeProduto = saida.quantidadeProduto;
     form.valorTotal = saida.valorTotal;
     form.dataSaida = saida.dataSaida;
     form.id_produto = saida.id_produto;
-    form.titulo = 'Editar Saida ' + produtos[saida.id_produto].name;
 
     form.addMode = false;
     form.editMode = true;
@@ -354,13 +354,13 @@ const openEditModal = (saida) => {
 
 const openShowModal = (saida, nomeProduto) => {
     form.reset();
+    form.titulo = 'Visualizar Saida ' + nomeProduto;
     form.id = saida.id;
     form.codigo = saida.codigo;
     form.quantidadeProduto = saida.quantidadeProduto;
     form.valorTotal = saida.valorTotal;
     form.dataSaida = saida.dataSaida;
     form.id_produto = saida.id_produto;
-    form.titulo = 'Visualizar Saida ' + nomeProduto;
 
     form.addMode = false;
     form.editMode = false;
@@ -393,7 +393,7 @@ function create() {
 }
 
 function update() {
-    form.put('/fornecedores/' + form.id, {
+    form.put('/saidas/' + form.id, {
         onFinish: () => {
             form.reset();
             form.openModal = false;
@@ -401,8 +401,8 @@ function update() {
     });
 }
 
-function deleteFornecedor(fornecedor) {
-    form.delete('fornecedores/' + fornecedor.id);
+function deleteSaida(saida) {
+    form.delete('saidas/' + saida.id);
 }
 
 </script>

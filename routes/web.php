@@ -49,4 +49,6 @@ Route::controller(EntradaController::class)->group(function(){
 Route::controller(SaidaController::class)->group(function(){
     Route::get('/saidas', 'index')-> name('saida.index');
     Route::post('/saidas', 'store')-> name('saida.store');
+    Route::put('/saidas/{id}', 'update')-> name('saida.update');
+    Route::delete('/saidas/{id}', 'destroy')-> name('saida.destroy');
 });
