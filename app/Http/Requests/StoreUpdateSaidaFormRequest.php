@@ -11,7 +11,7 @@ class StoreUpdateSaidaFormRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class StoreUpdateSaidaFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'codigo' => 'required|unique:saidas|',
+            'codigo' => 'required|unique:saidas|min:0',
             'quantidadeProduto' => 'required|integer|min:0',
             'valorTotal' => 'required|decimal:0,2|min:0.00',
             'dataSaida' => 'required|date|before or equal:today|',

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Requests\StoreUserFormRequest;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class UserService
         return User::get();
     }
 
-    public function store(Request $request){
+    public function store(StoreUserFormRequest $request){
         User::create($request->all());
     }
 

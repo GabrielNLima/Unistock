@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserFormRequest;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -18,7 +19,7 @@ class UserController extends Controller
         return Inertia::render('Users/Index');
     }
 
-    public function store(Request $request){
+    public function store(StoreUserFormRequest $request){
         //User::create($request->all());
 
         $this->userService->store($request);
