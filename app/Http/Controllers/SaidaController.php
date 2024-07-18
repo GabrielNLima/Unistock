@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateSaidaFormRequest;
 use Illuminate\Http\Request;
 use App\Services\SaidaService;
 use App\Services\ProdutoService;
@@ -22,7 +23,7 @@ class SaidaController extends Controller
         return inertia('Saidas/Index', ['saidas' => $saidas, 'produtos' => $produtos]);
     }
 
-    public function store(Request $request){
+    public function store(StoreUpdateSaidaFormRequest $request){
         $this->saidaService->store($request);
 
         return redirect()->route('saida.index');

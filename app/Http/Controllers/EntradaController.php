@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateEntradaFormRequest;
 use Illuminate\Http\Request;
 use App\Services\EntradaService;
 use App\Services\ProdutoService;
@@ -23,7 +24,7 @@ class EntradaController extends Controller
         return inertia('Entradas/Index', ['entradas' => $entradas, 'produtos' => $produtos]);
     }
 
-    public function store(Request $request){
+    public function store(StoreUpdateEntradaFormRequest $request){
         $this->entradaService->store($request);
 
         return redirect()->route('entrada.index');

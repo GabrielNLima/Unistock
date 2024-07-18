@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Requests\StoreUpdateSaidaFormRequest;
 use App\Models\Saida;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class SaidaService
         return Saida::orderBy('id')->get();
     }
 
-    public function store(Request $request){
+    public function store(StoreUpdateSaidaFormRequest $request){
         Saida::create($request->all());
     }
 

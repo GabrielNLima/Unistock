@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Requests\StoreUpdateEntradaFormRequest;
 use App\Models\Entrada;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class EntradaService
         return Entrada::orderBy('id')->get();
     }
 
-    public function store(Request $request){
+    public function store(StoreUpdateEntradaFormRequest $request){
         Entrada::create($request->all());
     }
 
