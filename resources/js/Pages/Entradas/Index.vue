@@ -44,67 +44,78 @@
                                         :title="form.titulo"
                                         width="40%"
                             >
-                                <form @submit.prevent="form.editMode ? update() : create()">
-                                    <div class="grid gap-4 mb-4 sm:grid-cols-2 h-64">
-                                        <div>
-                                            <label for="nomeProduto"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Produto</label>
-                                                <select v-model="form.id_produto" id="produto" :disabled="form.showMode" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                    <option v-for="produto in produtos" :key="produto.id" :value="produto.id">{{ produto.name }}</option>
-                                                </select>
-                                        </div>
-                                        <div>
-                                            <label for="codigo"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Código</label>
-                                            <input v-model="form.codigo" type="integer" name="codigo" id="codigo" :disabled="form.showMode"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                placeholder="Código da Entrada">
-                                        </div>
-                                        <div>
-                                            <label for="quantidade"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantidade</label>
-                                            <input v-model="form.quantidadeProduto" type="integer" name="quantidade" id="quantidade" :disabled="form.showMode"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                placeholder="00">
-                                        </div>
-                                        <div>
-                                            <label for="custoTotal"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Custo Total</label>
-                                            <input v-model="form.custoTotal" type="float" name="custoTotal" id="custoTotal" :disabled="form.showMode"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                placeholder="00.00">
-                                        </div>
-                                        <div>
-                                            <label for="data"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data</label>
-                                            <input v-model="form.dataEntrada" type="date" name="data" id="data" :disabled="form.showMode"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            >
+                                <template #default>
+                                    <div class="flex flex-col h-full">
+                                        <div class="flex-grow overflow-auto p-4">
+                                            <form @submit.prevent="form.editMode ? update() : create()">
+                                                <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                                                    <div>
+                                                        <label for="nomeProduto"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Produto</label>
+                                                            <select v-model="form.id_produto" id="produto" :disabled="form.showMode" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                                <option v-for="produto in produtos" :key="produto.id" :value="produto.id">{{ produto.name }}</option>
+                                                            </select>
+                                                            <div v-if="form.errors.id_produto" class="mt-2 text-danger" v-text="form.errors.id_produto"></div>
+                                                    </div>
+                                                    <div>
+                                                        <label for="codigo"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Código</label>
+                                                        <input v-model="form.codigo" type="integer" name="codigo" id="codigo" :disabled="form.showMode"
+                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                            placeholder="Código da Entrada">
+                                                            <div v-if="form.errors.codigo" class="mt-2 text-danger" v-text="form.errors.codigo"></div>
+                                                    </div>
+                                                    <div>
+                                                        <label for="quantidade"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantidade</label>
+                                                        <input v-model="form.quantidadeProduto" type="integer" name="quantidade" id="quantidade" :disabled="form.showMode"
+                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                            placeholder="00">
+                                                            <div v-if="form.errors.quantidadeProduto" class="mt-2 text-danger" v-text="form.errors.quantidadeProduto"></div>
+                                                    </div>
+                                                    <div>
+                                                        <label for="custoTotal"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Custo Total</label>
+                                                        <input v-model="form.custoTotal" type="float" name="custoTotal" id="custoTotal" :disabled="form.showMode"
+                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                            placeholder="00.00">
+                                                            <div v-if="form.errors.custoTotal" class="mt-2 text-danger" v-text="form.errors.custoTotal"></div>
+                                                    </div>
+                                                    <div>
+                                                        <label for="data"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data</label>
+                                                        <input v-model="form.dataEntrada" type="date" name="data" id="data" :disabled="form.showMode"
+                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                        >
+                                                        <div v-if="form.errors.dataEntrada" class="mt-2 text-danger" v-text="form.errors.dataEntrada"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="flex justify-center">
+                                                    <button v-if="form.addMode" type="submit"
+                                                        class="text-white inline-flex  items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                                        <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd"
+                                                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                                                clip-rule="evenodd"></path>
+                                                        </svg>
+                                                        Adicionar Entrada
+                                                    </button>
+                                                    <button v-if="form.editMode" type="submit" :disabled="form.showMode"
+                                                        class="text-white inline-flex  items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                                        <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd"
+                                                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                                                clip-rule="evenodd"></path>
+                                                        </svg>
+                                                        Editar Entrada
+                                                    </button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
-                                    <div class="flex justify-between mt-6">
-                                        <button v-if="form.addMode" type="submit"
-                                            class="text-white inline-flex  items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                            <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg>
-                                            Adicionar Entrada
-                                        </button>
-                                        <button v-if="form.editMode" type="submit" :disabled="form.showMode"
-                                            class="text-white inline-flex  items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                            <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg>
-                                            Editar Entrada
-                                        </button>
-                                    </div>
-                                </form>
+                                </template>
                             </el-dialog>
                                     <!-- </div>
                                 </div>
@@ -385,19 +396,28 @@ const form = useForm({
 
 function create() {
     form.post('/entradas', {
-        onFinish: () => {
-            console.log("reset form");
+        onSuccess: () => {
             form.reset();
             form.openModal = false;
+        },
+        onError: () => {
+            setTimeout(() => {
+                form.clearErrors();
+            }, 5000);
         }
     });
 }
 
 function update() {
     form.put('/entradas/' + form.id, {
-        onFinish: () => {
+        onSuccess: () => {
             form.reset();
             form.openModal = false;
+        },
+        onError: () => {
+            setTimeout(() => {
+                form.clearErrors();
+            }, 5000);
         }
     });
 }

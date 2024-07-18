@@ -44,68 +44,79 @@
                                         :title="form.titulo"
                                         width="40%"
                             >
-                                <form @submit.prevent="form.editMode ? update() : create()">
-                                    <div class="grid gap-4 mb-4 sm:grid-cols-2 h-64">
-                                        <div>
-                                            <label for="name"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
-                                            <input v-model="form.name" type="text" name="name" id="name" :disabled="form.showMode"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                placeholder="Nome do Fornecedor">
-                                        </div>
-                                        <div>
-                                            <label for="codigo"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Código</label>
-                                            <input v-model="form.codigo" type="integer" name="codigo" id="codigo" :disabled="form.showMode"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                placeholder="Código do Fornecedor">
-                                        </div>
-                                        <div>
-                                            <label for="cnpj"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CNPJ</label>
-                                            <input v-model="form.cnpj" type="text" name="cnpj" id="cnpj" :disabled="form.showMode"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                placeholder="12.345.678/0001-00">
-                                        </div>
-                                        <div>
-                                            <label for="data"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data</label>
-                                            <input v-model="form.dataFornecedor" type="date" name="data" id="data" :disabled="form.showMode"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            >
-                                        </div>
-                                        <div>
-                                            <label for="telefone"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefone</label>
-                                            <input v-model="form.telefone" type="text" name="telefone" id="telefone" :disabled="form.showMode"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                placeholder="(42)9 9998-0842">
-                                        </div>
+                                <template #default>
+                                    <div class="flex flex-col h-full">
+                                        <div class="flex-grow overflow-auto p-4">
+                                            <form @submit.prevent="form.editMode ? update() : create()">
+                                                <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                                                    <div>
+                                                        <label for="name"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
+                                                        <input v-model="form.name" type="text" name="name" id="name" :disabled="form.showMode"
+                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                            placeholder="Nome do Fornecedor">
+                                                            <div v-if="form.errors.name" class="mt-2 text-danger" v-text="form.errors.name"></div>
+                                                        </div>
+                                                    <div>
+                                                        <label for="codigo"
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Código</label>
+                                                        <input v-model="form.codigo" type="integer" name="codigo" id="codigo" :disabled="form.showMode"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                        placeholder="Código do Fornecedor">
+                                                        <div v-if="form.errors.codigo" class="mt-2 text-danger" v-text="form.errors.codigo"></div>
+                                                    </div>
+                                                    <div>
+                                                        <label for="cnpj"
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CNPJ</label>
+                                                        <input v-model="form.cnpj" type="text" name="cnpj" id="cnpj" :disabled="form.showMode"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                        placeholder="12.345.678/0001-00">
+                                                        <div v-if="form.errors.cnpj" class="mt-2 text-danger" v-text="form.errors.cnpj"></div>
+                                                    </div>
+                                                    <div>
+                                                        <label for="data"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data</label>
+                                                        <input v-model="form.dataFornecedor" type="date" name="data" id="data" :disabled="form.showMode"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                        >
+                                                        <div v-if="form.errors.dataFornecedor" class="mt-2 text-danger" v-text="form.errors.dataFornecedor"></div>
+                                                    </div>
+                                                    <div>
+                                                        <label for="telefone"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefone</label>
+                                                        <input v-model="form.telefone" type="text" name="telefone" id="telefone" :disabled="form.showMode"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                        placeholder="(42)9 9998-0842">
+                                                        <div v-if="form.errors.dataFornecedor" class="mt-2 text-danger" v-text="form.errors.dataFornecedor"></div>
+                                                    </div>
 
+                                                </div>
+                                                <div class="flex justify-center">
+                                                    <button v-if="form.addMode" type="submit"
+                                                    class="text-white inline-flex  items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                                        <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                                        clip-rule="evenodd"></path>
+                                                    </svg>
+                                                        Adicionar Fornecedor
+                                                    </button>
+                                                    <button v-if="form.editMode" type="submit" :disabled="form.showMode"
+                                                        class="text-white inline-flex  items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                                        <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd"
+                                                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                                                clip-rule="evenodd"></path>
+                                                        </svg>
+                                                        Editar Fornecedor
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="flex justify-between mt-6">
-                                        <button v-if="form.addMode" type="submit"
-                                            class="text-white inline-flex  items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                            <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg>
-                                            Adicionar Fornecedor
-                                        </button>
-                                        <button v-if="form.editMode" type="submit" :disabled="form.showMode"
-                                            class="text-white inline-flex  items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                            <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg>
-                                            Editar Fornecedor
-                                        </button>
-                                    </div>
-                                </form>
+                                </template>
                             </el-dialog>
                                     <!-- </div>
                                 </div>
@@ -385,18 +396,28 @@ const form = useForm({
 
 function create() {
     form.post('/fornecedores', {
-        onFinish: () => {
+        onSuccess: () => {
             form.reset();
             form.openModal = false;
+        },
+        onError: () => {
+            setTimeout(() => {
+                form.clearErrors();
+            }, 5000);
         }
     });
 }
 
 function update() {
     form.put('/fornecedores/' + form.id, {
-        onFinish: () => {
+        onSuccess: () => {
             form.reset();
             form.openModal = false;
+        },
+        onError: () => {
+            setTimeout(() => {
+                form.clearErrors();
+            }, 5000);
         }
     });
 }
