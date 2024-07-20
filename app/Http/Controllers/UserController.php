@@ -15,8 +15,13 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    public function index(){
-        return Inertia::render('Users/Index');
+
+    public function login(){
+        return inertia('Auth/Login');
+    }
+
+    public function register (){
+        return Inertia::render('Auth/Register');
     }
 
     public function store(StoreUserFormRequest $request){
@@ -26,33 +31,17 @@ class UserController extends Controller
         return redirect()->route('user.login');
     }
 
-    public function login(){
-        return inertia('Auth/Login');
+    public function dashboard(){
+        return Inertia::render('Dashboard');
     }
 
     public function validates(Request $request){
-        // $user = User::where('idUsuario', $request->input('idUsuario'))->first();
-        // if (!$user){
-        //     return redirect()->route('user.login')->withErrors(['error' => 'id não registrado']);
-        // }
-        // if (!password_verify($request->input('password'), $user->password)){
-        //     return redirect()->route('user.login')->withErrors(['error' => 'senha incorreta']);
-        // }
-
         if ($this->userService->validate($request)){
             return redirect()->route('dashboard');
         }
         else{
             return redirect()->route('user.login')->withErrors(['error' => 'id ou senha incorretos!']);
         }
-    }
-
-    public function register (){
-        return Inertia::render('Auth/Register');
-    }
-
-    public function dashboard(){
-        return Inertia::render('Dashboard');
     }
 
 }

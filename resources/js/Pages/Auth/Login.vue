@@ -1,4 +1,5 @@
 <template>
+    <Head title="Login" />
     <Navbar/>
             <div class="flex flex-col items-center justify-top px-6 py-8 mx-auto md:h-screen lg:py-0 m-32">
                 <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
@@ -58,7 +59,7 @@
 import Navbar from "../../Shared/Navbar.vue";
 import { onMounted } from "vue";
 import { initFlowbite } from "flowbite";
-import { Link, useForm } from "@inertiajs/vue3";
+import { Link, useForm, Head } from "@inertiajs/vue3";
 
 const form = useForm({
     idUsuario: null,

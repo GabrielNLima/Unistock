@@ -15,7 +15,6 @@ Route::controller(UserController::class)-> group(function(){
     Route::get('/dashboard', 'dashboard')-> name('dashboard');
     Route::get('/', 'login')-> name('user.login');
     Route::get('/register', 'register')-> name('user.register');
-    Route::get('users', 'index')->name('user.index');
     Route::post('/register', 'store')-> name('user.store');
     Route::post('/login', 'validates')-> name('user.validate');
 });
