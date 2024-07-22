@@ -80,10 +80,10 @@
                                                         >
                                                         <div v-if="form.errors.dataProduto" class="mt-2 text-danger" v-text="form.errors.dataProduto"></div>
                                                     </div>
-                                                    <div>
+                                                    <div v-if="form.showMode">
                                                         <label for="quantidade"
                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantidade</label>
-                                                        <input v-model="form.quantidade" type="integer" name="quantidade" id="quantidade" :disabled="form.showMode"
+                                                        <input v-model="form.quantidade" type="integer" name="quantidade" id="quantidade" disabled
                                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                             placeholder="Quantidade do Produto">
                                                             <div v-if="form.errors.quantidade" class="mt-2 text-danger" v-text="form.errors.quantidade"></div>
@@ -319,7 +319,7 @@ const form = useForm({
     codigo: null,
     categoria: null,
     dataProduto: null,
-    quantidade: null,
+    quantidade: 0,
     precoUnitario: null,
     id_fornecedor: null,
     titulo: '',
