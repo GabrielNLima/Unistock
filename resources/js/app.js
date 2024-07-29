@@ -1,6 +1,6 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import { MaskInput } from 'vue-3-mask'
 import ElementPlus from 'element-plus'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import 'element-plus/dist/index.css'
@@ -16,6 +16,7 @@ createInertiaApp({
   },
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
+      .component('MaskInput', MaskInput)
       .use(plugin)
       .use(ElementPlus)
       .use(ZiggyVue)

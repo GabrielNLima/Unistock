@@ -68,9 +68,9 @@
                                                     <div>
                                                         <label for="cnpj"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CNPJ</label>
-                                                        <input v-model="form.cnpj" type="text" name="cnpj" id="cnpj" :disabled="form.showMode"
+                                                        <MaskInput v-model="form.cnpj" mask="##.###.###/####-##" type="text" name="cnpj" id="cnpj" :disabled="form.showMode"
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                        placeholder="12.345.678/0001-00">
+                                                        placeholder="12.345.678/0001-00" />
                                                         <div v-if="form.errors.cnpj" class="mt-2 text-danger" v-text="form.errors.cnpj"></div>
                                                     </div>
                                                     <div>
@@ -84,9 +84,9 @@
                                                     <div>
                                                         <label for="telefone"
                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefone</label>
-                                                        <input v-model="form.telefone" type="text" name="telefone" id="telefone" :disabled="form.showMode"
+                                                        <MaskInput v-model="form.telefone" mask="(##) #####-####" type="text" name="telefone" id="telefone" :disabled="form.showMode"
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                        placeholder="(42)9 9998-0842">
+                                                        placeholder="(42)9 9998-0842" />
                                                         <div v-if="form.errors.telefone" class="mt-2 text-danger" v-text="form.errors.telefone"></div>
                                                     </div>
 
@@ -246,6 +246,7 @@
 <script setup>
 import { Head, useForm } from '@inertiajs/vue3';
 import Layout from '../../Shared/Layout.vue';
+import { MaskInput } from 'vue-3-mask';
 
 defineProps({
     fornecedores: Array

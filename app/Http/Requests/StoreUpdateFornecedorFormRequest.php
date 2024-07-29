@@ -27,14 +27,14 @@ class StoreUpdateFornecedorFormRequest extends FormRequest
             'cnpj' => [
                 'required',
                 'string',
-                // 'size:14',
+                'size:18',
                 'regex:/^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/'
             ],
             'dataFornecedor' => 'required|date|before_or_equal:today|',
             'telefone' => [
                 'required',
                 'string',
-                'min:10',
+                'size:15',
                 // 'max:11',
                 'regex:/^\(?\d{2}\)?[\s-]?\d{4,5}[\s-]?\d{4}$/'
             ],
@@ -56,7 +56,7 @@ class StoreUpdateFornecedorFormRequest extends FormRequest
 
             'cnpj.required' => 'O campo CNPJ é obrigatório.',
             'cnpj.string' => 'O campo CNPJ deve ser uma string.',
-            // 'cnpj.size' => 'O campo CNPJ deve ter exatamente 14 caracteres.',
+            'cnpj.size' => 'O campo CNPJ deve ter exatamente 18 caracteres.',
             'cnpj.regex' => 'O campo CNPJ deve estar no formato 00.000.000/0000-00.',
 
 
@@ -66,7 +66,7 @@ class StoreUpdateFornecedorFormRequest extends FormRequest
 
             'telefone.required' => 'O campo telefone é obrigatório.',
             'telefone.string' => 'O campo telefone deve ser uma string.',
-            'telefone.min' => 'O campo telefone deve ter no mínimo 10 caracteres.',
+            'telefone.size' => 'O campo telefone deve ter exatamente 15 caracteres.',
             // 'telefone.max' => 'O campo telefone deve ter no máximo 11 caracteres.',
             'telefone.regex' => 'O campo telefone deve estar no formato (00) 0000-0000 ou (00) 00000-0000.',
         ];
