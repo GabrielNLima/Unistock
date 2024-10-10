@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: unistock-container
+    networks:
+      - unistock
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    environment:
+      DB_CONNECTION: pgsql
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: unistock-db
+      DB_USERNAME: DEBIO
+      DB_PASSWORD: bigwings
+
+  db:
+    image: postgres:13
+    container_name: postgres_db
+    networks:
+      - unistock
+    environment:
+      POSTGRES_DB: unistock-db
+      POSTGRES_USER: DEBIO
+      POSTGRES_PASSWORD: bigwings
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+networks:
+  unistock:
+    driver: bridge
+
+volumes:
+  pgdata:
+    driver: bridge
