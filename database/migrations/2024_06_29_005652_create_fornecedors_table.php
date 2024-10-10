@@ -21,10 +21,10 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Schema::table('produtos', function(Blueprint $table){
-        //     $table->unsignedBigInteger('fornecedor_id');
-        //     $table->foreign('fornecedor_id')->references('id')->on('fornecedors');
-        // });
+        Schema::table('produtos', function(Blueprint $table){
+            $table->bigIncrements('fornecedor_id');
+            $table->foreign('fornecedor_id')->references('id')->on('fornecedors');
+        });
     }
 
     /**

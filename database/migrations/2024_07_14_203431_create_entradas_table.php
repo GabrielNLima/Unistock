@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('quantidadeProduto');
             $table->float('custoTotal');
             $table->date('dataEntrada');
-            $table->integer('id_produto');
+            $table->bigIncrements('id_produto');
             $table->foreign('id_produto')->references('id')->on('produtos')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
 

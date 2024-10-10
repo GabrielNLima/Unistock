@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('dataProduto');
             $table->integer('quantidade');
             $table->float('precoUnitario');
-            $table->integer('id_fornecedor');
+            $table->bigIncrements('id_fornecedor');
             $table->foreign('id_fornecedor')->references('id')->on('fornecedors')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
