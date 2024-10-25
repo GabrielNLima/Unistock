@@ -13,9 +13,6 @@ RUN apt-get update && apt-get install -y \
     nodejs \
     npm
 
-# Instalar extensões do PHP necessárias para o Laravel
-RUN docker-php-ext-install pdo_pgsql pdo_mysql mbstring exif pcntl bcmath gd
-
 # Instalar Composer globalmente
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -23,7 +20,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www
 
 # Copiar o arquivo de configuração do Nginx
-COPY ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copiar arquivos do Laravel
 COPY . .
@@ -32,7 +29,7 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader
 
 # Instalar dependências do Node.js (Vue.js, Tailwind, etc.)
-RUN npm install && npm run build
+RUN npm install
 
 # Ajustar permissões para o Laravel
 RUN chown -R www-data:www-data /var/www \
